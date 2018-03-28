@@ -25,8 +25,10 @@ module.exports.create = (req, res, next) => {
                 'Cookie': cookieSession
             };
             my_http_options.auth = {};
+            // change from {"value":"key"} to {"vmware-api-session-id":"key"}
+            response.data["vmware-api-session-id"] = response.data.value;
+            delete response.data.value;
             res.status(201).json(response.data);
-            //res.status(201).json(cookieSession);
         })
         .catch( error => {
             res.status(500).json(error);

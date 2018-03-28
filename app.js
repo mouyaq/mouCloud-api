@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var session = require('./routes/session.routes');
+var host = require('./routes/host.routes');
 
 var app = express();
 
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/session', session);
+app.use('/api/session', session);
+app.use('/api/host', host);
 
 module.exports = app;
