@@ -40,14 +40,12 @@ module.exports.destroy = (req, res, next) => {
     my_http_options = {
         method: 'delete',
         url: `https://${process.env.VC}/rest/com/vmware/cis/session`,
-        withCredentials: true,
         responseType: 'json',
-        responseEncoding: 'utf8',
-        httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+        responseEncoding: 'utf8'
     }
     axios(my_http_options)
         .then( response => {
-            res.status(204).json(response.data);
+            res.status(204).json();
         })
         .catch( error => {
             res.status(500).json(error);
