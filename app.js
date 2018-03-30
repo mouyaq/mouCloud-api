@@ -9,7 +9,8 @@ var bodyParser = require('body-parser');
 
 var session = require('./routes/session.routes');
 var host = require('./routes/host.routes');
-var vm = require('./routes/vm.routes');
+var vm = require('./routes/vm/vm.routes');
+var vmPower = require('./routes/vm/vm.power.routes');
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/session', session);
 app.use('/api/host', host);
 app.use('/api/vm', vm);
+app.use('/api/vm/power', vmPower);
 
 module.exports = app;

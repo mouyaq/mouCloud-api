@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const vmController = require('../controllers/vm.controller');
+const vmController = require('../../controllers/vm/vm.controller');
 
 router.get('/', vmController.list);
 router.get('/:id', vmController.details);
