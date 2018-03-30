@@ -45,7 +45,8 @@ module.exports.destroy = (req, res, next) => {
     }
     axios(my_http_options)
         .then( response => {
-            res.status(204).json();
+            res.send("session deleted");
+            //res.status(204).json();
         })
         .catch( error => {
             res.status(500).json(error);
