@@ -6,6 +6,9 @@ const vmPowerController = require('../../controllers/vm/vm.power.controller');
 
 router.get('/', vmController.list);
 router.get('/:id/power', vmPowerController.details);
+router.post('/:id/power/reset', vmPowerController.reset);
+router.post('/:id/power/start', vmPowerController.start);
+router.post('/:id/power/stop', vmPowerController.stop);
 router.get('/:id', vmController.details);
 
 module.exports = router;
