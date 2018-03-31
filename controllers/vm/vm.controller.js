@@ -34,7 +34,7 @@ module.exports.create = (req, res, next) => {
     }
     axios(my_http_options)
     .then( response => {
-        res.status(200).json(response.data);
+        res.status(200);
     })
     .catch( error => {
         res.status(500).json(error);
