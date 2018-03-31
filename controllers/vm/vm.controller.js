@@ -37,7 +37,7 @@ module.exports.create = (req, res, next) => {
         res.status(200);
     })
     .catch( error => {
-        res.status(500).json(error);
+        res.status(500);
     });
 }
 
