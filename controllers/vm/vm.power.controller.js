@@ -59,7 +59,7 @@ module.exports.start = (req, res, next) => {
         res.status(200).json(response.data);
     })
     .catch( error => {
-        res.status(500).json(error);
+        res.status(500).json(error.response.data);
     });
 }
 
@@ -79,6 +79,6 @@ module.exports.stop = (req, res, next) => {
         res.status(200).json(response.data);
     })
     .catch( error => {
-        res.status(500).json(error);
+        res.status(500).json(error.response.data);
     });
 }

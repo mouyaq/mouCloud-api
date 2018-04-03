@@ -18,6 +18,6 @@ module.exports.list = (req, res, next) => {
         res.status(200).json(response.data);
     })
     .catch( error => {
-        res.status(500).json(error);
+        res.status(500).json(error.response.data);
     });
 }
