@@ -37,7 +37,12 @@ module.exports.create = (req, res, next) => {
         res.status(200);
     })
     .catch( error => {
-        res.status(500);
+        if(error.response.data.type === "com.vmware.vapi.std.errors.unauthenticated") {
+            res.status(401).json(error.response.data);
+        }
+        else {
+            res.status(500).json(error.response.data);
+        }
     });
 }
 
@@ -57,6 +62,11 @@ module.exports.details = (req, res, next) => {
         res.status(200).json(response.data);
     })
     .catch( error => {
-        res.status(500).json(error.response.data);
+        if(error.response.data.type === "com.vmware.vapi.std.errors.unauthenticated") {
+            res.status(401).json(error.response.data);
+        }
+        else {
+            res.status(500).json(error.response.data);
+        }
     });
 }
