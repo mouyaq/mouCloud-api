@@ -11,6 +11,7 @@ const session = require('./routes/session.routes');
 const host = require('./routes/host.routes');
 const vm = require('./routes/vm.routes');
 const rp = require('./routes/resource-pool.routes'); 
+const datastore = require('./routes/datastore.routes');
 
 var app = express();
 
@@ -28,5 +29,6 @@ app.use('/api/session', session);
 app.use('/api/host', host);
 app.use('/api/vm', vm);
 app.use('/api/resource-pool', rp);
+app.use('/api/datastore', datastore);
 
 module.exports = app;
