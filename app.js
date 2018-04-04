@@ -1,15 +1,16 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 //const cors = require('cors');
 //const corsConfig = require('./configs/cors.config');
 
-var session = require('./routes/session.routes');
-var host = require('./routes/host.routes');
-var vm = require('./routes/vm/vm.routes');
+const session = require('./routes/session.routes');
+const host = require('./routes/host.routes');
+const vm = require('./routes/vm.routes');
+const rp = require('./routes/resource-pool.routes'); 
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/session', session);
 app.use('/api/host', host);
 app.use('/api/vm', vm);
+app.use('/api/resource-pool', rp);
 
 module.exports = app;
