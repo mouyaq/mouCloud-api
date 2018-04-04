@@ -4,9 +4,17 @@ const axios = require('axios');
 const https = require('https');
 
 module.exports.list = (req, res, next) => {
+    let url;
+    const filters = req._parsedUrl.search;
+    if(filters != null) {
+        url = `https://${process.env.VC}/rest/vcenter/vm${filters}`;
+    }
+    else {
+        url = `https://${process.env.VC}/rest/vcenter/vm`;
+    }
     my_http_options = {
         method: 'get',
-        url: `https://${process.env.VC}/rest/vcenter/vm`,
+        url: url,
         withCredentials: true,
         headers: req.headers,
         responseType: 'json',
