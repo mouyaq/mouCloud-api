@@ -44,6 +44,7 @@ module.exports.create = (req, res, next) => {
         responseType: 'json',
         responseEncoding: 'utf8',
         httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+        data: req.body
     }
     axios(my_http_options)
     .then( response => {
