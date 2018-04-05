@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 //const cors = require('cors');
 //const corsConfig = require('./configs/cors.config');
 
+const cluster = require('./routes/cluster.routes');
 const datacenter = require('./routes/datacenter.routes');
 const datastore = require('./routes/datastore.routes');
 const folder = require('./routes/folder.routes');
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/cluster', cluster);
 app.use('/api/datacenter', datacenter);
 app.use('/api/datastore', datastore);
 app.use('/api/folder', folder);

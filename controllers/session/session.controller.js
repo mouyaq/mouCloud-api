@@ -59,11 +59,16 @@ module.exports.destroy = (req, res, next) => {
     }
     axios(my_http_options)
         .then( response => {
-            res.status(204).json();
+            res.status(204).json(response.data);
         })
         .catch( error => {
-            console.log(`Error deleting session ${error}`);
-            res.status(500).json(error);
+            console.log(error);
+            if(error.response.data.type === "com.vmware.vapi.std.errors.unauthenticated") {
+                res.status(401).json(error.response.data);
+            }
+            else {
+                res.status(500).json(error.response.data);
+            }
         });
 }
 
