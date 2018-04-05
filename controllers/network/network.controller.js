@@ -7,10 +7,10 @@ module.exports.list = (req, res, next) => {
     let url;
     const filters = req._parsedUrl.search;
     if(filters != null) {
-        url = `https://${process.env.VC}/rest/vcenter/host${filters}`;
+        url = `https://${process.env.VC}/rest/vcenter/network${filters}`;
     }
     else {
-        url = `https://${process.env.VC}/rest/vcenter/host`;
+        url = `https://${process.env.VC}/rest/vcenter/network`;
     }
     my_http_options = {
         method: 'get',
@@ -33,5 +33,4 @@ module.exports.list = (req, res, next) => {
             res.status(500).json(error.response.data);
         }
     });
-
 }

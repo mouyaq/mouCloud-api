@@ -7,10 +7,10 @@ module.exports.list = (req, res, next) => {
     let url;
     const filters = req._parsedUrl.search;
     if(filters != null) {
-        url = `https://${process.env.VC}/rest/vcenter/vm${filters}`;
+        url = `https://${process.env.VC}/rest/vcenter/datacenter${filters}`;
     }
     else {
-        url = `https://${process.env.VC}/rest/vcenter/vm`;
+        url = `https://${process.env.VC}/rest/vcenter/datacenter`;
     }
     my_http_options = {
         method: 'get',
@@ -38,7 +38,7 @@ module.exports.list = (req, res, next) => {
 module.exports.create = (req, res, next) => {
     my_http_options = {
         method: 'post',
-        url: `https://${process.env.VC}/rest/vcenter/vm`,
+        url: `https://${process.env.VC}/rest/vcenter/datacenter`,
         withCredentials: true,
         headers: req.headers,
         responseType: 'json',
@@ -63,7 +63,7 @@ module.exports.details = (req, res, next) => {
     const id = req.params.id;
     my_http_options = {
         method: 'get',
-        url: `https://${process.env.VC}/rest/vcenter/vm/${id}`,
+        url: `https://${process.env.VC}/rest/vcenter/datacenter/${id}`,
         withCredentials: true,
         headers: req.headers,
         responseType: 'json',
