@@ -4,8 +4,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-//const cors = require('cors');
-//const corsConfig = require('./configs/cors.config');
+const cors = require('cors');
+const corsConfig = require('./configs/cors.config');
 
 const cluster = require('./routes/cluster.routes');
 const datacenter = require('./routes/datacenter.routes');
@@ -19,7 +19,7 @@ const vm = require('./routes/vm.routes');
 
 var app = express();
 
-//app.use(cors(corsConfig))
+app.use(cors(corsConfig))
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
