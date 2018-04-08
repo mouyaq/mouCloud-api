@@ -29,12 +29,16 @@ module.exports.create = (req, res, next) => {
                 'Cookie': cookieSession
             };
             a = cookieSession;
-            console.log(cookieSession);
+            const user = {
+                username: my_http_options.auth.username,
+                token: response.data.value
+            }
             my_http_options.auth = {};
             // change from {"value":"key"} to {"vmware-api-session-id":"key"}
             //response.data["vmware-api-session-id"] = response.data.value;
             //delete response.data.value;
-            res.status(201).json(response.data);
+            console.log(user);
+            res.status(201).json(user);
         })
         .catch( error => {
             if(error.response.data.type === "com.vmware.vapi.std.errors.unauthenticated") {
