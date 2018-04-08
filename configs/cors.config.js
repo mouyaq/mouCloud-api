@@ -1,7 +1,7 @@
 const originsAllowed = process.env.CORS_ORIGINS || [
     '*',
     'http://localhost:3000',
-    'http://mean.moulab.es:3000'
+    'http://mean.moulab.es:3000',
     'https://localhost:3443',
     'https://mean.moulab.es:3443',
     'http://localhost:4200',
