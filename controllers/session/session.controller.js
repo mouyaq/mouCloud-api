@@ -23,13 +23,14 @@ module.exports.create = (req, res, next) => {
         .then( response => {
             // cookie value
             const cookieSession = response.headers['set-cookie'];
+            console.log(cookieSession[0]);
             my_http_options.headers = {
-                'Cookie': cookieSession
+                'Cookie': cookieSession[0]
             };
             const user = {
                 username: my_http_options.auth.username,
                 token: response.data.value,
-                cookie: cookieSession
+                cookie: cookieSession[0]
             }
             my_http_options.auth = {};
             // change from {"value":"key"} to {"vmware-api-session-id":"key"}
@@ -49,6 +50,7 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.destroy = (req, res, next) => {
+    console.log(req.headers);
     my_http_options = {
         method: 'delete',
         url: `https://${process.env.VC}/rest/com/vmware/cis/session`,
@@ -56,7 +58,8 @@ module.exports.destroy = (req, res, next) => {
         responseType: 'json',
         responseEncoding: 'utf8',
         httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-        headers: { 'Cookie': req.headers['set-cookie'] }
+        //headers: { 'Cookie': req.headers['set-cookie'] }
+        headers: req.headers
     }
     axios(my_http_options)
         .then( response => {
