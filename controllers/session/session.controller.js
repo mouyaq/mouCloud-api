@@ -44,7 +44,6 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.destroy = (req, res, next) => {
-    console.log(req.headers);
     my_http_options = {
         method: 'delete',
         url: `https://${process.env.VC}/rest/com/vmware/cis/session`,
