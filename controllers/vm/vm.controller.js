@@ -23,7 +23,7 @@ module.exports.list = (req, res, next) => {
     }
     axios(my_http_options)
     .then( response => {
-        res.status(200).json(response.data.value);
+        res.status(200).json(response.data);
     })
     .catch( error => {
         if(error.response.data.type === "com.vmware.vapi.std.errors.unauthenticated") {
