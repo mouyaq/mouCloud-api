@@ -11,5 +11,6 @@ router.post('/:id/power/reset', vmPowerController.reset);
 router.post('/:id/power/start', vmPowerController.start);
 router.post('/:id/power/stop', vmPowerController.stop);
 router.get('/:id', vmController.details);
+router.delete('/:id', vmController.delete);
 
 module.exports = router;
