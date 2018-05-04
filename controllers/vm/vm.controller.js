@@ -114,7 +114,8 @@ module.exports.console = (req, res, next) => {
     const id = req.params.id;
     var dataJSON;
     var spawn = require("child_process").spawn,child;
-    child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1", `${id}`]);
+    // child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1", `${id}`]);
+    child = spawn("pwsh",["/home/mouyaq/console.ps1", `${id}`]);
     child.stdout.on("data",function(data){
         if(data.toString() != '\n') {
             dataJSON = {
