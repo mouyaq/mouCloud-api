@@ -109,3 +109,27 @@ module.exports.delete = (req, res, next) => {
         }
     });
 }
+
+module.exports.console = (req, res, next) => {
+    var dataJSON;
+    var spawn = require("child_process").spawn,child;
+    child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1"]);
+    child.stdout.on("data",function(data){
+        if(data.toString() != '\n') {
+            dataJSON = {
+                "data": data.toString().replace(/\n$/, "")
+            }
+        }
+        console.log("Powershell Data: " + data);
+        console.log("Data received");
+    });
+    child.stderr.on("data",function(data){
+        console.log("Powershell Errors: " + data);
+    });
+    child.on("exit",function(){
+        console.log("Powershell Script finished");
+        res.status(200).json(dataJSON);
+    });
+    child.stdin.end(); //end input
+    
+}
