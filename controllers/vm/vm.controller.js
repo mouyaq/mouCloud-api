@@ -111,9 +111,10 @@ module.exports.delete = (req, res, next) => {
 }
 
 module.exports.console = (req, res, next) => {
+    const id = req.params.id;
     var dataJSON;
     var spawn = require("child_process").spawn,child;
-    child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1"]);
+    child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1", `${id}`]);
     child.stdout.on("data",function(data){
         if(data.toString() != '\n') {
             dataJSON = {
@@ -128,7 +129,7 @@ module.exports.console = (req, res, next) => {
     });
     child.on("exit",function(){
         console.log("Powershell Script finished");
-        res.status(200).json(dataJSON);
+        res.status(200).json(dataJSON.data);
     });
     child.stdin.end(); //end input
     
