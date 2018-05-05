@@ -114,8 +114,8 @@ module.exports.console = (req, res, next) => {
     const id = req.params.id;
     var dataJSON;
     var spawn = require("child_process").spawn,child;
-    // child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1", `${id}`]);
-    child = spawn("pwsh",["/home/mouyaq/console.ps1", `${id}`]);
+    child = spawn("pwsh",["/Users/mouyaq/ownCloud/IRONHACK/tests/console.ps1", `${id}`]);
+    // child = spawn("pwsh",["/home/mouyaq/console.ps1", `${id}`]);
     child.stdout.on("data",function(data){
         if(data.toString() != '\n') {
             dataJSON = {
@@ -133,5 +133,28 @@ module.exports.console = (req, res, next) => {
         res.status(200).json(dataJSON.data);
     });
     child.stdin.end(); //end input
-    
+}
+
+module.exports.consolePython = (req, res, next) => {
+    const id = req.params.id;
+    var dataJSON;
+    var spawn = require("child_process").spawn,child;
+    child = spawn("python3",["/home/mouyaq/console.py", `${id}`]);
+    child.stdout.on("data",function(data){
+        if(data.toString() != '\n') {
+            dataJSON = {
+                "data": data.toString().replace(/\n$/, "")
+            }
+        }
+        console.log("Python Data: " + data);
+        console.log("Data received");
+    });
+    child.stderr.on("data",function(data){
+        console.log("Python Errors: " + data);
+    });
+    child.on("exit",function(){
+        console.log("Python Script finished");
+        res.status(200).json(dataJSON.data);
+    });
+    child.stdin.end(); //end input
 }

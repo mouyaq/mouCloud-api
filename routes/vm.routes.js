@@ -13,5 +13,6 @@ router.post('/:id/power/stop', vmPowerController.stop);
 router.get('/:id', vmController.details);
 router.delete('/:id', vmController.delete);
 router.get('/:id/console', vmController.console);
+router.get('/:id/consolePython', vmController.consolePython);
 
 module.exports = router;
