@@ -6,7 +6,8 @@ const contentLibraryController = require('../../controllers/content/library.cont
 router.get('/', contentLibraryController.list);
 router.get('/:id', contentLibraryController.details);
 // returns all items from content library=id
-router.get('/items/:id', contentLibraryController.items);
+router.get('/:id/items/', contentLibraryController.items);
+router.get('/item/:id', contentLibraryController.itemDetails);
 
 // router.post('/', vmController.create);
 // router.get('/:id/power', vmPowerController.details);
