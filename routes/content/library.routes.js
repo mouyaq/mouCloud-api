@@ -8,6 +8,7 @@ router.get('/:id', contentLibraryController.details);
 // returns all items from content library=id
 router.get('/:id/items/', contentLibraryController.items);
 router.get('/item/:id', contentLibraryController.itemDetails);
+router.post('/deployItem/:id', contentLibraryController.deployItem);
 
 // router.post('/', vmController.create);
 // router.get('/:id/power', vmPowerController.details);
